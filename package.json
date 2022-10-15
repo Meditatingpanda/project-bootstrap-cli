@@ -1,6 +1,6 @@
 {
   "name": "recode-cli",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "publishConfig": {
     "access": "public",
-    "main": "./dist"
+    "main": "./dist",
+    "registry": "https://registry.npmjs.org"
   },
   "license": "MIT",
   "devDependencies": {
