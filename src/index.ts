@@ -119,7 +119,7 @@ inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   // else{
   //   createDirectoryContents(CURR_DIR, projectPath);
   // }
-  createDirectoryContents(templatePath, projectName);
+   createDirectoryContents(templatePath, projectName);
   console.log(chalk.cyan("Project ready 🚀"));
-  console.log(options);
+   console.log(options);
 });

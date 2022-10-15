@@ -1,6 +1,6 @@
 {
-  "name": "testbare",
-  "version": "1.0.0",
+  "name": "recode-cli",
+  "version": "1.0.1",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist"
   },
   "bin": {
-    "mycli": "./dist/index.js"
+    "recode": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public",
