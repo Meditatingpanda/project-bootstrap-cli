@@ -5,7 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { CliOptions } from "./model";
+// import { CliOptions } from "./model";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import chalk from "chalk";
@@ -24,13 +24,7 @@ const QUESTIONS = [
     name: "name",
     type: "input",
     message: "Project name:",
-  },
-  {
-    name: "path",
-    type: "input",
-    message: "Project path:",
-    default: ".",
-  },
+  }
 ];
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
@@ -87,22 +81,23 @@ function createDirectoryContents(templatePath: string, projectName: string) {
 inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   const projectChoice = answers["template"];
   const projectName = answers["name"];
-  const projectPath = answers["path"];
+  // const projectPath = answers["path"];
   const templatePath = path.join(__dirname, "templates", projectChoice);
   const tartgetPath = path.join(CURR_DIR, projectName);
-  const options: CliOptions = {
-    projectName,
-    templateName: projectChoice,
-    templatePath,
-    tartgetPath,
-    projectPath,
-  };
+  // const options: CliOptions = {
+  //   projectName,
+  //   templateName: projectChoice,
+  //   templatePath,
+  //   tartgetPath,
+  //   projectPath,
+  // };
 
   if (!createProject(tartgetPath)) {
     return;
   }
+  
 
   createDirectoryContents(templatePath, projectName);
   console.log(chalk.cyan("Project ready 🚀"));
-  console.log(options);
+ // console.log(options);
 });
