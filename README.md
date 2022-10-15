@@ -35,3 +35,8 @@ To generate the build files
    yarn build
 ```
 
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
