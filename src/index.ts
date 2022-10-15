@@ -25,6 +25,12 @@ const QUESTIONS = [
     type: "input",
     message: "Project name:",
   },
+  {
+    name:"path",
+    type:"input",
+    message:"Project path:",
+    default:"."
+  }
 ];
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
@@ -74,6 +80,7 @@ function createDirectoryContents(templatePath: string, projectName: string) {
 inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   const projectChoice = answers["template"];
   const projectName = answers["name"];
+  const projectPath=answers["path"]
   const templatePath = path.join(__dirname, "templates", projectChoice);
   const tartgetPath = path.join(CURR_DIR, projectName);
   const options: CliOptions = {
@@ -81,11 +88,18 @@ inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
     templateName: projectChoice,
     templatePath,
     tartgetPath,
+    projectPath,
   };
 
   if (!createProject(tartgetPath)) {
     return;
   }
+  // if(options.projectPath!=="." ){
+  // createDirectoryContents(templatePath, projectName);
+  // }
+  // else{
+  //   createDirectoryContents(CURR_DIR, projectPath);
+  // }
   createDirectoryContents(templatePath, projectName);
   console.log(options);
 });

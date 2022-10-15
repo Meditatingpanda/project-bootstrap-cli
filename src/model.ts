@@ -3,4 +3,5 @@ export interface CliOptions {
     templateName: string
     templatePath: string
     tartgetPath: string
+    projectPath: string
 }
