@@ -26,11 +26,11 @@ const QUESTIONS = [
     message: "Project name:",
   },
   {
-    name:"path",
-    type:"input",
-    message:"Project path:",
-    default:"."
-  }
+    name: "path",
+    type: "input",
+    message: "Project path:",
+    default: ".",
+  },
 ];
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
@@ -48,6 +48,20 @@ function createProject(projectPath: string) {
 const SKIP_FILES = ["node_modules", ".template.json"];
 function createDirectoryContents(templatePath: string, projectName: string) {
   // read all files/folders (1 level) from template folder
+  const template: string = `{
+    "name": "${projectName}",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+  }
+  
+  `;
   const filesToCreate = fs.readdirSync(templatePath);
   // loop each file/folder
   filesToCreate.forEach((file) => {
@@ -63,8 +77,13 @@ function createDirectoryContents(templatePath: string, projectName: string) {
       // read file content and transform it using template engine
       let contents = fs.readFileSync(origFilePath, "utf8");
       // write file to destination folder
-      const writePath = path.join(CURR_DIR, projectName, file);
-      fs.writeFileSync(writePath, contents, "utf8");
+      if (file === "package.json") {
+        fs.writeFileSync(path.join(CURR_DIR, projectName, file), template);
+      } else {
+        const writePath = path.join(CURR_DIR, projectName, file);
+
+        fs.writeFileSync(writePath, contents, "utf8");
+      }
     } else if (stats.isDirectory()) {
       // create folder in destination folder
       fs.mkdirSync(path.join(CURR_DIR, projectName, file));
@@ -80,7 +99,7 @@ function createDirectoryContents(templatePath: string, projectName: string) {
 inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   const projectChoice = answers["template"];
   const projectName = answers["name"];
-  const projectPath=answers["path"]
+  const projectPath = answers["path"];
   const templatePath = path.join(__dirname, "templates", projectChoice);
   const tartgetPath = path.join(CURR_DIR, projectName);
   const options: CliOptions = {
@@ -101,5 +120,6 @@ inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   //   createDirectoryContents(CURR_DIR, projectPath);
   // }
   createDirectoryContents(templatePath, projectName);
+  console.log(chalk.cyan("Project ready 🚀"));
   console.log(options);
 });
