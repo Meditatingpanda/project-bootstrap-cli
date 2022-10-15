@@ -48,20 +48,7 @@ function createProject(projectPath: string) {
 const SKIP_FILES = ["node_modules", ".template.json"];
 function createDirectoryContents(templatePath: string, projectName: string) {
   // read all files/folders (1 level) from template folder
-  const template: string = `{
-    "name": "${projectName}",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \\"Error: no test specified\\" && exit 1"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC"
-  }
-  
-  `;
+
   const filesToCreate = fs.readdirSync(templatePath);
   // loop each file/folder
   filesToCreate.forEach((file) => {
@@ -78,12 +65,13 @@ function createDirectoryContents(templatePath: string, projectName: string) {
       let contents = fs.readFileSync(origFilePath, "utf8");
       // write file to destination folder
       if (file === "package.json") {
-        fs.writeFileSync(path.join(CURR_DIR, projectName, file), template);
-      } else {
-        const writePath = path.join(CURR_DIR, projectName, file);
-
-        fs.writeFileSync(writePath, contents, "utf8");
+        const template = JSON.parse(contents);
+        template.name = projectName;
+        contents = JSON.stringify(template, null, 2);
       }
+      const writePath = path.join(CURR_DIR, projectName, file);
+
+      fs.writeFileSync(writePath, contents, "utf8");
     } else if (stats.isDirectory()) {
       // create folder in destination folder
       fs.mkdirSync(path.join(CURR_DIR, projectName, file));
@@ -113,13 +101,8 @@ inquirer.prompt(QUESTIONS).then((answers: Promise<any>) => {
   if (!createProject(tartgetPath)) {
     return;
   }
-  // if(options.projectPath!=="." ){
-  // createDirectoryContents(templatePath, projectName);
-  // }
-  // else{
-  //   createDirectoryContents(CURR_DIR, projectPath);
-  // }
-   createDirectoryContents(templatePath, projectName);
+
+  createDirectoryContents(templatePath, projectName);
   console.log(chalk.cyan("Project ready 🚀"));
-   console.log(options);
+  console.log(options);
 });
