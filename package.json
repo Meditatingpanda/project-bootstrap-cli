@@ -1,11 +1,12 @@
 {
   "name": "recode-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "ts-node-esm src/index.ts ",
-    "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist"
+    "build": "tsc && shx rm -rf dist/templates && shx cp -r src/templates dist",
+    "test": "jest"
   },
   "bin": {
     "recode": "./dist/index.js"
@@ -15,11 +16,30 @@
     "main": "./dist",
     "registry": "https://registry.npmjs.org"
   },
+  "keywords": [
+    "recode",
+    "cli",
+    "typescript",
+    "node",
+    "esm",
+    "prductivity"
+  ],
+  "author": "Gyana Ranjan Panda",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Meditatingpanda/project-bootstrap-cli"
+  },
+  "homepage": "https://github.com/Meditatingpanda/project-bootstrap-cli",
   "license": "MIT",
+  "np": {
+    "yarn": false,
+    "contents": "./dist"
+  },
   "devDependencies": {
     "@types/inquirer": "^9.0.2",
     "@types/node": "^18.11.0",
     "chalk": "^5.1.2",
+    "np": "^7.6.2",
     "shx": "^0.3.4",
     "ts-node": "^7.0.1",
     "tslib": "^2.4.0",
