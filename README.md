@@ -2,6 +2,11 @@
 # Project-template-cli
 
 A cli tool to quickly generate the boilerplate code required for a Project
+<br/>
+<br/>
+![NPM Downloads](https://img.shields.io/npm/dw/:recode-cli)
+<br/>
+<img width="427" alt="Screenshot 2022-10-16 at 9 46 13 PM" src="https://user-images.githubusercontent.com/83230804/196046315-52a26a3a-a4fb-4961-b8fb-bd8c0dc7af0b.png">
 
 
 
