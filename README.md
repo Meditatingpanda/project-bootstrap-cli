@@ -6,7 +6,8 @@ A cli tool to quickly generate the boilerplate code required for a Project
 <br/>
 ![NPM Downloads](https://img.shields.io/npm/dw/:recode-cli)
 <br/>
-<img width="427" alt="Screenshot 2022-10-16 at 9 46 13 PM" src="https://user-images.githubusercontent.com/83230804/196046315-52a26a3a-a4fb-4961-b8fb-bd8c0dc7af0b.png">
+
+<img width="414" alt="Screenshot 2022-10-17 at 11 00 55 AM" src="https://user-images.githubusercontent.com/83230804/196096516-54fa26b9-444a-4344-9d26-b97bbe0f363a.png">
 
 
 
