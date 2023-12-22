@@ -1,9 +1,3 @@
-# Hacktoberfest2023 💻 🚀 
-## _Happy Contributing_ , _Happy hacking_......
-- All Contributors are requested to start ⭐ this repo and follow me for a successful merge of pull requests.
-- See created issues to get started with your open-source journey 
--  Visit The Hacktoberfest website for more information [Hacktoberfest 2023](https://hacktoberfest.com/) 
-
 # Project-template-cli
 
 A CLI tool to quickly generate the boilerplate code required for a Project
